@@ -18,10 +18,14 @@ class LinkedList:
         else:
             self.head = new_node
 
-        return "data " + str(data) + " successfully inserted"
-
     def display(self):
         current = self.head
         while(current):
             print(current.data)
             current = current.next
+
+if __name__ == '__main__':
+    linked_list = LinkedList()
+    linked_list.insert(1)
+    linked_list.insert(2)
+    linked_list.display()
