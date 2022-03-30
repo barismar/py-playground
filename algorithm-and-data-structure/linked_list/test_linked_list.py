@@ -31,5 +31,67 @@ class TestLinkedList(TestCase):
             [call(1),call(2),call(3),call(3),call(2),call(1)]
         )
 
+    @patch('builtins.print')
+    def test_delete_found_on_the_first_node(self, mock_print):
+        new_linked_list = LinkedList()
+        new_linked_list.insert(1)
+        new_linked_list.insert(2)
+        new_linked_list.insert(3)
+        new_linked_list.delete(1)
+        new_linked_list.display()
+        self.assertEqual(
+            mock_print.mock_calls,
+            [call(2),call(3)]
+        )
+
+    @patch('builtins.print')
+    def test_delete_found_on_the_middle_node(self, mock_print):
+        new_linked_list = LinkedList()
+        new_linked_list.insert(1)
+        new_linked_list.insert(2)
+        new_linked_list.insert(3)
+        new_linked_list.delete(2)
+        new_linked_list.display()
+        self.assertEqual(
+            mock_print.mock_calls,
+            [call(1),call(3)]
+        )
+
+    @patch('builtins.print')
+    def test_delete_found_on_the_last_node(self, mock_print):
+        new_linked_list = LinkedList()
+        new_linked_list.insert(1)
+        new_linked_list.insert(2)
+        new_linked_list.insert(3)
+        new_linked_list.delete(3)
+        new_linked_list.display()
+        self.assertEqual(
+            mock_print.mock_calls,
+            [call(1),call(2)]
+        )
+
+    @patch('builtins.print')
+    def test_delete_on_None_head(self, mock_print):
+        new_linked_list = LinkedList()
+        new_linked_list.delete(3)
+        new_linked_list.display()
+        self.assertEqual(
+            mock_print.mock_calls,
+            [call("Item 3 not found!")]
+        )
+
+    @patch('builtins.print')
+    def test_delete_item_not_found(self, mock_print):
+        new_linked_list = LinkedList()
+        new_linked_list.insert(1)
+        new_linked_list.insert(2)
+        new_linked_list.insert(3)
+        new_linked_list.delete(100)
+        new_linked_list.display()
+        self.assertEqual(
+            mock_print.mock_calls,
+            [call("Item 100 not found!"),call(1),call(2),call(3)]
+        )
+
 if __name__ == '__main__':
     unittest.main()
