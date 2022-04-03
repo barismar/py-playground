@@ -10,36 +10,46 @@ class LinkedList:
     def __init__(self):
         self.head = None
 
-    def insert(self, data):
+    def insert_at_end(self, data):
+        new_node = Node(data)
+        if self.head == None:
+            self.head = new_node
+            return
+
+        current = self.head
+        while current.next:
+            current = current.next
+        current.next = new_node
+
+    def insert_at_begining(self, data):
         new_node = Node(data)
 
-        if self.head:
-            current = self.head
-            while current.next:
-                current = current.next
-            current.next = new_node
-        else:
+        if self.head == None:
             self.head = new_node
+            return
+
+        new_node.next = self.head
+        self.head = new_node
 
     def delete(self, data):
         current = self.head
-        isItemFound = False
+        is_item_found = False
 
         if current != None:
             if current.data == data:
-                isItemFound = True
+                is_item_found = True
                 self.head = current.next
 
-            if isItemFound == False:
+            if is_item_found == False:
                 while current.next:
                     next = current.next
                     if next.data == data:
                         current.next = next.next
-                        isItemFound = True
+                        is_item_found = True
                         break
                     current = current.next
 
-        if isItemFound == False:
+        if is_item_found == False:
             print("Item " + str(data) + " not found!")
 
 
@@ -51,8 +61,7 @@ class LinkedList:
 
 if __name__ == '__main__':
     linked_list = LinkedList()
-    linked_list.insert(1)
-    linked_list.insert(1)
-    linked_list.insert(2)
-    linked_list.delete(10)
+    linked_list.insert_at_begining(1)
+    linked_list.insert_at_begining(2)
+    linked_list.insert_at_begining(3)
     linked_list.display()
