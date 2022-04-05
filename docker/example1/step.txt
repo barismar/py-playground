@@ -1,0 +1,3 @@
+1.  Build dockerfile: "docker build -t python-imdb ."
+2.  - Run docker image: "docker run python-imdb"
+    - Run docker image with interactive input: "docker run -i -t python-imdb"
