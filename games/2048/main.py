@@ -1,7 +1,5 @@
-from array import array
 import random
 from abc import ABC, abstractclassmethod
-from time import sleep
 
 class BoardInterface(ABC):
     @abstractclassmethod
