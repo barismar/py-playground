@@ -28,8 +28,8 @@ class Board(BoardInterface):
 
     def create(self):
         self.board = list()
-        for _ in range(0, self.column):
-            self.board.append([0] * self.row)
+        for _ in range(0, self.row):
+            self.board.append([0] * self.column)
         self.__generate_random_postion()
         self.__set_new_number()
     
@@ -52,10 +52,21 @@ class Board(BoardInterface):
         print("---------------------------------", end="\n")
 
     def update(self):
+        self.arrow = input("Input key [w,a,s,d]: ")
+        if self.arrow == 'w':
+            print("up")
+            # self.__go_up()
+        elif self.arrow == 'a':
+            print("left")
+        elif self.arrow == 's':
+            print("rigth")
+        elif self.arrow == 'd':
+            print("down")
+        else:
+            print('Input correct key!')
+            return
         self.__generate_random_postion()
         self.__set_new_number()
-
-        self.arrow = input("Input key [w,a,s,d]: ")
 
     def __set_new_number(self):
         self.board[self.random_row][self.random_column] = 2
@@ -79,6 +90,6 @@ class BoardGame():
             self.board.show()
 
 if __name__ == '__main__':
-    board = Board(row = 4, column = 4)
+    board = Board(row = 10, column = 4)
     game = BoardGame(board)
     game.play()
